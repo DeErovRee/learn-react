@@ -1,0 +1,11 @@
+*{
+    background-color: rgb(40, 42, 55); 
+}
+
+.App {
+    font-family: 'Lato', sans-serif;
+    font-size: 70px;
+    text-align: center;
+    color: rgb(97, 218, 251);
+    background-color: rgb(40, 42, 55);
+}
