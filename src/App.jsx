@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { Form } from './components/form';
 import { Message } from './components/message';
+import { Form } from './components/form';
 
 
 
@@ -9,7 +9,7 @@ export const App = () => {
   const [messageList, setMessageList] = useState([])
   const [messageBody, setMessageBody] = useState({
     text: '',
-    author: '',
+    author: ''
   })
 
   const ROBOT_MESSAGE = 'Привет. Сообщение отправлено'
@@ -24,16 +24,16 @@ export const App = () => {
 
   return (
     <div className="App">
+      <div className="messageList">
+        {
+          messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} timeStamp={e.timeStamp} />)
+        }
+      </div>
       <Form 
         data={messageBody} 
         setData={setMessageBody}
         setMessage={setMessageList}
       ></Form>
-      <div className="messageList">
-        {
-          messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)
-        }
-      </div>
     </div>
   )
 }

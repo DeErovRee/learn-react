@@ -1,0 +1,73 @@
+body {
+    margin: 0 auto;
+}
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.message {
+    text-align: center;
+    background-color: aliceblue;
+    width: 300px;
+    border: 0.5px solid gainsboro;
+    border-radius: 20px 20px 20px 0px;
+    margin: 10px;
+}
+.message h3 {
+    text-align: left;
+    margin: 5px 10px;
+}
+.message .text {
+    text-align: justify;
+    margin: 10px 10px;
+}
+.timeStamp {
+    color: gainsboro;
+    text-align: right;
+    margin: 5px 5px;
+}
+form {
+    width: 100%;
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.inputField {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+}
+.inputField input {
+    height: 20px;
+    border: none;
+}
+.inputField input:focus-visible {
+    outline: none;
+}
+.inputField .inputName {
+    min-width: 50px;
+    border-radius: 20px 0px 0px 20px;
+    padding: 5px 5px 5px 15px;
+    margin: 10px 0px 10px 15px;
+    border-right: 0.5px solid gainsboro;
+}
+.inputField .inputText {
+    border-radius: 0px 20px 20px 0px;
+    padding: 5px 15px 5px 5px;
+    margin: 10px 10px 10px 0px;
+}
+form button {
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 32px;
+    background-image: url(./image/sendMessage.png);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: dodgerblue;
+}
