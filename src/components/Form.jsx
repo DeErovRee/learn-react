@@ -1,11 +1,28 @@
+export const Form = ({data, setData, setMessage}) => {
+    const {text, author} = data
 
-
-export const Form = () => {
-    const count = 1
-    const name = 'Ivan'
-    return <form>
-        <p>Count: {count}</p>
-        <p>Name: {name}</p>
-        <button type="button">Click</button>
-    </form>
+    const submitForm = (e) => {
+        console.log(text)
+        e.preventDefault()
+        if(text.length > 0) {
+            setMessage(prevstate => [...prevstate, {text, author}])
+        }
+        setData(
+            {
+                text: '',
+                author: '',
+            }
+        )
+    }
+    return (
+        <form onSubmit={submitForm}>
+            <input placeholder="Имя" value={text} onChange={(e) => 
+                setData(prevstate => [{...prevstate, text: e.target.value}])} 
+            />
+            <input placeholder="Текст" value={author} onChange={(e) => 
+                setData(prevstate => [{...prevstate, author: e.target.value}])} 
+            />
+            <button type="submit">Отправить</button>
+        </form>
+    )
 }

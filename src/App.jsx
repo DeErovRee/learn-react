@@ -1,35 +1,41 @@
 import './App.css';
-import { Chield } from './components/Chield';
-// import { Form } from './components/Form';
-// import { Form as FormClass} from './class-components/Form';
-// import { Count as CountClass} from './class-components/Count';
-import { Count } from './components/Count';
 import React, { useEffect, useState } from "react";
+import { Form } from './components/form';
+import { Message } from './components/message';
+
+
 
 export const App = () => {
-  const [name, setName] = useState('geek')
-  const [count, setCount] = useState(0)
+  const [messageList, setMessageList] = useState([])
+  const [messageBody, setMessageBody] = useState({
+    text: '',
+    author: '',
+  })
 
+  const ROBOT_MESSAGE = 'Привет. Сообщение отправлено'
 
-  const handleChangeName = (ev) => {
-    setName(ev.target.value)
-  }
+  useEffect(() => {
+    if (messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot') {
+      setTimeout(() => {
+        setMessageList(prevstate => [...prevstate, {text: ROBOT_MESSAGE, author: 'robot'}])
+      }, 1500)
+    }
+  }, [messageList])
 
   return (
     <div className="App">
-      {/* <CountClass count={10}/>
-      <hr/>
-      <FormClass /> */}
-
-      <Count />
-      <hr />
-      <h3>Parent component</h3>
-      <p>{count}</p>
-      <input onChange={handleChangeName} />
-      <h3>Chield component</h3>
-      <Chield name={name} handleChangeCount={setCount}/>
+      <Form 
+        data={messageBody} 
+        setData={setMessageBody}
+        setMessage={setMessageList}
+      ></Form>
+      <div className="messageList">
+        {
+          messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)
+        }
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
