@@ -2,6 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 import { Message } from './components/message';
 import { Form } from './components/form';
+import { getCurrentDate } from './components/currentDate';
 
 
 
@@ -17,7 +18,8 @@ export const App = () => {
   useEffect(() => {
     if (messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot') {
       setTimeout(() => {
-        setMessageList(prevstate => [...prevstate, {text: ROBOT_MESSAGE, author: 'robot'}])
+        const timeStamp = getCurrentDate()
+        setMessageList(prevstate => [...prevstate, {text: ROBOT_MESSAGE, author: 'robot', timeStamp: timeStamp}])
       }, 1500)
     }
   }, [messageList])

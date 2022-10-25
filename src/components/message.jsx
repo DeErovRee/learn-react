@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const Message = ({author, text, timeStamp}) => {
     return (
         <div className="message">

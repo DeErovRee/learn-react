@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { getCurrentDate } from './currentDate'
 
 export const Form = ({data, setData, setMessage}) => {

@@ -2,9 +2,13 @@ body {
     margin: 0 auto;
 }
 .App {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.messageList {
+    flex-grow: 1;
 }
 .message {
     text-align: center;
@@ -31,6 +35,7 @@ form {
     width: 100%;
     background-color: gainsboro;
     display: flex;
+    flex-shrink: 1;
     flex-direction: row;
     align-items: center;
     justify-content: center;
