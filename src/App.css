@@ -7,13 +7,48 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.messageList {
+.workSpace {
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
     flex-grow: 1;
 }
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 93vh;
+    background-color: ghostwhite;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    display: flex;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 0.5px solid gainsboro;
+}
+.chatImg {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.sidebar ul li:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
 .message {
+    max-width: 70vh;
     text-align: center;
     background-color: aliceblue;
-    width: 300px;
     border: 0.5px solid gainsboro;
     border-radius: 20px 20px 20px 0px;
     margin: 10px;
@@ -23,6 +58,7 @@ body {
     margin: 5px 10px;
 }
 .message .text {
+    word-break: break-all;
     text-align: justify;
     margin: 10px 10px;
 }
@@ -32,6 +68,8 @@ body {
     margin: 5px 5px;
 }
 form {
+    position: sticky;
+    bottom: 0;
     width: 100%;
     background-color: gainsboro;
     display: flex;
