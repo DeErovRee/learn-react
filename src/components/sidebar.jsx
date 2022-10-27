@@ -1,10 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { getFIO } from './getFIO'
 
-export const SidebarItem = ({chatList, setChatList}) => {
+export const SidebarItem = ({chatList, setChatList,}) => {
     return (
         <ul>
-            {chatList.map((el, ind) => <li key={ind}><div className='chatImg'>{el.FIO}</div>{el.title}</li>)}
+            {chatList.map((el, ind) => <li key={ind} className='SiderbarItem'><div className='chatImg'>{el.FIO}</div>{el.title}</li>)}
+            <SidebarItemAdd 
+                setChatList={setChatList}
+            />
         </ul>
+    )
+}
+
+export const SidebarItemAdd = ({setChatList}) => {
+    
+    const [data, setData] = useState({
+        text: ''
+    })
+
+    const submitForm = (e) => {
+        e.preventDefault()
+        let user = e.target[1].value
+        if (user) {
+            const FIO = getFIO(user)
+            setChatList((prevstate => [...prevstate, {title: user, FIO}]))
+        }
+        setData({
+            text: ''
+        })
+    }
+    
+    return (
+        <li>
+            <form className='SidebarItemAdd sidebarItem' onSubmit={submitForm}>
+                <button type='submit' className='chatImg chatListAddBtn'><span>&#10133;</span></button>
+                <input 
+                    type='text' 
+                    placeholder='Введите пользователя' 
+                    className='chatListAddInput' 
+                    value={data.text}
+                    onChange={(e) => setData((prevstate) => [{...prevstate, text: e.target.value}])}/>
+            </form>
+        </li>
     )
 }
 
@@ -13,7 +50,7 @@ export const Sidebar = ({chatList, setChatList}) => {
         <div className="sidebar">
             <SidebarItem 
                 chatList={chatList}
-                setChatList={chatList}/>
+                setChatList={setChatList} />
         </div>
     )
 }

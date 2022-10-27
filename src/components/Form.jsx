@@ -7,7 +7,7 @@ export const Form = ({data, setData, setMessage}) => {
 
     const submitForm = (e) => {
         e.preventDefault()
-        if(e.target[1].value.length > 0) {
+        if(e.target[1].value.length > 0 && e.target[0].value.length > 3) {
             let text = e.target[1].value
             let author = e.target[0].value
             let timeStamp = getCurrentDate()
@@ -20,13 +20,14 @@ export const Form = ({data, setData, setMessage}) => {
             }
         )
     }
+
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitForm} className='formSubmit'>
             <div className="inputField">
                 <input className="inputName" placeholder="Имя" value={author} onChange={(e) => setData(prevstate => [{...prevstate, author: e.target.value}])} />
                 <input className="inputText" placeholder="Текст" value={text} onChange={(e) => setData(prevstate => [{...prevstate, text: e.target.value}])} />
             </div>
-            <button type="submit">
+            <button type="submit" className='sendMessageBtn'>
                 &#8682;
             </button>
         </form>

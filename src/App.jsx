@@ -60,7 +60,9 @@ export const App = () => {
       <div className="workSpace">
         <Sidebar 
           chatList={chatList}
-          setChatList={setChatList}/>
+          setChatList={setChatList}
+          data={messageBody} 
+          setData={setMessageBody}/>
         <div className="messageList">
           {
             messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} timeStamp={e.timeStamp} />)

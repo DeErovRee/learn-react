@@ -9,9 +9,15 @@ export function getCurrentDate(separator=':'){
     let minute = newDate.getMinutes();
     let seconds = newDate.getSeconds();
 
-    hours < 10 ? hours = '0' + hours : hours 
-    minute < 10 ? minute = '0' + minute : minute 
-    seconds < 10 ? seconds = '0' + seconds : seconds
+    if (hours < 10) {
+        hours = '0' + hours
+    } 
+    if (minute < 10) {
+        minute = '0' + minute
+    } 
+    if (seconds < 10) {
+        seconds = '0' + seconds
+    } 
 
     return `${hours}${separator}${minute}${separator}${seconds}`
 }
