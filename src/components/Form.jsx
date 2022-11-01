@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { getCurrentDate } from './currentDate'
 
@@ -21,10 +21,16 @@ export const Form = ({data, setData, setMessage}) => {
         )
     }
 
+    const ref = useRef (null)
+
+    useEffect( () => {
+        ref.current.focus()
+    }, [])
+
     return (
         <form onSubmit={submitForm} className='formSubmit'>
             <div className="inputField">
-                <input className="inputName" placeholder="Имя" value={author} onChange={(e) => setData(prevstate => [{...prevstate, author: e.target.value}])} />
+                <input ref={ref} className="inputName" placeholder="Имя" value={author} onChange={(e) => setData(prevstate => [{...prevstate, author: e.target.value}])} />
                 <input className="inputText" placeholder="Текст" value={text} onChange={(e) => setData(prevstate => [{...prevstate, text: e.target.value}])} />
             </div>
             <button type="submit" className='sendMessageBtn'>
