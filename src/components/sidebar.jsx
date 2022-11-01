@@ -1,10 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { getFIO } from './getFIO'
 
 export const SidebarItem = ({chatList, setChatList,}) => {
+
+    //Удаление чата из списка чатов
+    const delChat = (e) => {
+        const user = e.target.attributes.user.value
+        setChatList((prevstate) => 
+            prevstate.filter(el => {
+                return el.title !== user
+            })
+        )
+    }
+
     return (
         <ul>
-            {chatList.map((el, ind) => <li key={ind} className='SiderbarItem'><div className='chatImg'>{el.FIO}</div>{el.title}</li>)}
+            {chatList.map((el, ind) => <li key={ind}  className='SidebarItem'>
+                <div className='chatImg'>{el.FIO}</div>
+                <div>{el.title}</div>
+                <button className='btnDelChat' type='button' user={el.title} onClick={(e) => {delChat(e)}}>X</button>
+                </li>)}
             <SidebarItemAdd 
                 setChatList={setChatList}
             />

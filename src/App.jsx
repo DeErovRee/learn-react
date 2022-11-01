@@ -38,7 +38,28 @@ export const App = () => {
       setChatList(() => copyChatList) // измененная копия массива записывается в state chatList
     }, [])
 
-  const [messageList, setMessageList] = useState([])
+  const [messageList, setMessageList] = useState([
+    {
+      text: 'Привет, как дела?',
+      author: 'Аврора'
+    },
+    {
+      text: 'Пойдем сегодня в парк гулять?',
+      author: 'Аврора'
+    },
+    {
+      text: 'Можно сходить на какую нибудь мелодрамму',
+      author: 'Аврора'
+    },
+    {
+      text: 'Вместо того чтобы возвеличивать небо и размышлять о нем, не лучше ли самим, умножая вещи, подчинить себе небо? Вместо того чтобы служить небу и воспевать его, не лучше ли, преодолевая небесную судьбу, самим использовать небо в своих интересах?',
+      author: 'Одиссей'
+    },
+    {
+      text: 'Ясно, напишу позже',
+      author: 'Аврора'
+    },
+  ])
   const [messageBody, setMessageBody] = useState({
     text: '',
     author: ''
