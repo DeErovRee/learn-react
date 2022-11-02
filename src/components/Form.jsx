@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-
+import SendIcon from '@material-ui/icons/Send'
 import { getCurrentDate } from './currentDate'
 
 export const Form = ({data, setData, setMessage}) => {
@@ -34,7 +34,7 @@ export const Form = ({data, setData, setMessage}) => {
                 <input className="inputText" placeholder="Текст" value={text} onChange={(e) => setData(prevstate => [{...prevstate, text: e.target.value}])} />
             </div>
             <button type="submit" className='sendMessageBtn'>
-                &#8682;
+                <SendIcon color='white'/>
             </button>
         </form>
     )

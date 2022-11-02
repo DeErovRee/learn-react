@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AddIcon from '@material-ui/icons/Add'
 import { getFIO } from './getFIO'
 
 export const SidebarItem = ({chatList, setChatList,}) => {
@@ -47,8 +48,10 @@ export const SidebarItemAdd = ({setChatList}) => {
     
     return (
         <li>
-            <form className='SidebarItemAdd sidebarItem' onSubmit={submitForm}>
-                <button type='submit' className='chatImg chatListAddBtn'><span>&#10133;</span></button>
+            <form className='SidebarItemAdd sidebarItem formListAdd' onSubmit={submitForm}>
+                <button type='submit' className='chatImg chatListAddBtn'>
+                    <AddIcon />
+                </button>
                 <input 
                     type='text' 
                     placeholder='Введите пользователя' 
