@@ -2,6 +2,22 @@ body {
     margin: 0 auto;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+header {
+    padding: 10px 0px;
+    background-color: gainsboro;
+    position: sticky;
+    bottom: 0;
+}
+header nav ul {
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+header nav ul li a:visited {
+    text-decoration: none;
+    color: black;
+}
 .App {
     min-height: 100vh;
     display: flex;
@@ -27,7 +43,6 @@ body {
 }
 .sidebar ul li {
     display: flex;
-    padding: 10px;
     margin: 0;
     border-bottom: 0.5px solid gainsboro;
     justify-content: flex-start;
@@ -46,9 +61,10 @@ body {
     color: gainsboro;
     padding: 0;
     margin: 0;
-    
+    cursor: pointer;
 }
 .chatImg {
+    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,6 +78,9 @@ body {
     box-sizing: border-box;
     padding: 10px;
     line-height: 1.2em;
+}
+.chatTitle {
+    margin: 10px 20px 10px 10px;
 }
 .formListAdd {
     display: flex;
@@ -112,7 +131,7 @@ body {
 .formSubmit {
     display: flex;
     position: sticky;
-    bottom: 0;
+    bottom: 50px;
     width: 100%;
     background-color: gainsboro;
     display: flex;
