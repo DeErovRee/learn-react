@@ -32,10 +32,10 @@ export const App = () => {
                 <Home />
               } />
             <Route 
-            path='*'
-            element={
-              <Page404 />
-            } />
+              path='*'
+              element={
+                <Page404 />
+              } />
         </Routes>
       </main>
       <header>
