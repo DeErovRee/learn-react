@@ -24,7 +24,7 @@ export const SidebarItem = ({chatList, setChatList}) => {
         <>
             <ul>
                 {chatList.map((el, ind) => 
-                <Link to={`/chats/chat${ind}`} key={ind}  className='SidebarItem' data-id={el.id} data-title={el.title} data-fio={el.FIO}>
+                <Link to={`/chats/chat${ind+1}`} key={ind}  className='SidebarItem' data-id={el.id} data-title={el.title} data-fio={el.FIO}>
                     <div className='chatImg'>{el.FIO}</div>
                     <div className='chatTitle'>{el.title}</div>
                     <button className='btnDelChat' type='button' user={el.title} onClick={(e) => {delChat(e)}}>X</button>
@@ -34,23 +34,6 @@ export const SidebarItem = ({chatList, setChatList}) => {
                     chatList={chatList}
                 />
             </ul>
-            <Routes className='chatUser'>
-                <Route
-                    path='/chat0' 
-                    element={
-                        <h1>Chat number1</h1>
-                }/>
-                <Route
-                    path='/chat1' 
-                    element={
-                        <h1>Chat number2</h1>
-                }/>
-                <Route
-                    path='/chat2' 
-                    element={
-                        <h1>Chat number3</h1>
-                }/>
-            </Routes>
         </>
     )
 }
@@ -67,7 +50,7 @@ export const SidebarItemAdd = ({setChatList, chatList}) => {
         if (user) {
             const FIO = getFIO(user)
             const id = chatList.length + 1
-            setChatList((prevstate => [...prevstate, {id, title: user, FIO}]))
+            setChatList((prevstate => [...prevstate, {id, title: user, FIO, messages: []}]))
         }
         setData({
             text: ''

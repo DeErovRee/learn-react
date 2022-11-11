@@ -41,14 +41,14 @@ header nav ul li a:visited {
     padding: 0;
     margin: 0;
 }
-.sidebar ul li {
+.SidebarItem {
+    position: relative;
     display: flex;
     margin: 0;
     border-bottom: 0.5px solid gainsboro;
     justify-content: flex-start;
-}
-.SidebarItem {
-    position: relative;
+    text-decoration: none;
+    color: black;
 }
 .btnDelChat {
     top: 0px;
@@ -90,6 +90,7 @@ header nav ul li a:visited {
     padding: 0;
 }
 .chatListAddInput {
+    margin: 10px 20px 10px 10px;
     border: none;
     background-color: inherit;
     border-bottom: 1px solid gainsboro;
