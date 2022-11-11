@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import { 
+    BrowserRouter as Router,
+    Routes, 
+    Route, 
+    Link 
+  } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add'
 import { getFIO } from './function/getFIO'
 
@@ -18,18 +24,33 @@ export const SidebarItem = ({chatList, setChatList}) => {
         <>
             <ul>
                 {chatList.map((el, ind) => 
-                <li key={ind}  className='SidebarItem' data-id={el.id} data-title={el.title} data-fio={el.FIO}>
+                <Link to={`/chats/chat${ind}`} key={ind}  className='SidebarItem' data-id={el.id} data-title={el.title} data-fio={el.FIO}>
                     <div className='chatImg'>{el.FIO}</div>
                     <div className='chatTitle'>{el.title}</div>
                     <button className='btnDelChat' type='button' user={el.title} onClick={(e) => {delChat(e)}}>X</button>
-                </li>)}
+                </Link>)}
                 <SidebarItemAdd 
                     setChatList={setChatList}
                     chatList={chatList}
                 />
             </ul>
-            <div className='chatUser'>
-            </div>
+            <Routes className='chatUser'>
+                <Route
+                    path='/chat0' 
+                    element={
+                        <h1>Chat number1</h1>
+                }/>
+                <Route
+                    path='/chat1' 
+                    element={
+                        <h1>Chat number2</h1>
+                }/>
+                <Route
+                    path='/chat2' 
+                    element={
+                        <h1>Chat number3</h1>
+                }/>
+            </Routes>
         </>
     )
 }

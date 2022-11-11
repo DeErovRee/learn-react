@@ -17,7 +17,7 @@ export const App = () => {
       <main>
         <Routes>
             <Route 
-              path='/chats'
+              path='/chats/*'
               element={
                 <MeetingRoom />
               } />
