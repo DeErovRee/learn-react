@@ -9,6 +9,7 @@ import { Message } from './message';
 import { Form } from './form';
 import { Sidebar } from './sidebar';
 import { getCurrentDate } from './function/currentDate';
+import { MessageField } from "./messageField";
 
 export const MeetingRoom = () => {
     const [chatList, setChatList] = useState([
@@ -147,18 +148,8 @@ export const MeetingRoom = () => {
                     setChatList={setChatList}
                     data={messageBody} 
                     setData={setMessageBody}/>
-                <Routes className='chatUser'>
-                    {
-                        messageList.map((el, ind) => {
-                        return(<Route 
-                            path={`/chat${ind+1}`}
-                            element={
-                                <h1>Чат номер {ind+1}</h1>
-                            }
-                            key={ind}/>)
-                        })
-                    }
-                </Routes>
+                <MessageField 
+                    chatList={chatList}/>
             </div>
             <Form 
                 data={messageBody} 
