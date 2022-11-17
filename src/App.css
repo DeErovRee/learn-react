@@ -183,3 +183,13 @@ header nav ul li a:visited {
     color: white;
     background-color: dodgerblue;
 }
+.profile {
+    display: flex;
+    justify-content: center;
+}
+.profileImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    background-color: red;
+}

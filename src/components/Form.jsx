@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import SendIcon from '@material-ui/icons/Send'
 import { getCurrentDate } from './function/currentDate'
 
-export const Form = ({data, setData, setMessage}) => {
+export const Form = ({chatList, setChatList, data, setData}) => {
     const {text, author} = data
 
     const submitForm = (e) => {
@@ -11,7 +11,8 @@ export const Form = ({data, setData, setMessage}) => {
             let text = e.target[1].value
             let author = e.target[0].value
             let timeStamp = getCurrentDate()
-            setMessage(prevstate => [...prevstate, {text, author, timeStamp}])
+            console.log(chatList)
+            // setChatList(prevstate => [...prevstate, {text, author, timeStamp}])
         }
         setData(
             {

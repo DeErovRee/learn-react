@@ -3,7 +3,6 @@ import { Message } from "./message";
 import { getCurrentDate } from "./function/currentDate";
 
 export const MessageArray = ({array}) => {
-    console.log(array[0].author)
     return(
         <>
             {

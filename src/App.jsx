@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react'
 import { MeetingRoom } from './components/meetingRoom'
 import { Page404 } from './components/page404'
+import { Profile } from './components/profile'
 import { 
   BrowserRouter as Router,
   Routes, 
@@ -63,11 +64,11 @@ export const App = () => {
   )
 }
 
-const Profile = () => {
-  return(
-    <h1>Здесь будет страница вашего профиля</h1>
-  )
-}
+// const Profile = () => {
+//   return(
+//     <h1>Здесь будет страница вашего профиля</h1>
+//   )
+// }
 
 const Home = () => {
   return(

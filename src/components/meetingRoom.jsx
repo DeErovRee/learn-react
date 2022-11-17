@@ -16,6 +16,7 @@ export const MeetingRoom = () => {
         {
                 id: 1,
                 title: 'Оксана Емельянова',
+                FIO: 'ОЕ',
                 img: '',
                 messages: [
                     {
@@ -35,6 +36,7 @@ export const MeetingRoom = () => {
         {
             id: 2,
             title: 'Николай Гузенко',
+            FIO: 'НГ',
             img: '',
             messages: [
                 {
@@ -54,6 +56,7 @@ export const MeetingRoom = () => {
         {
             id: 3,
             title: 'Владислав Сухачев',
+            FIO: 'ВС',
             img: '',
             messages: [
                 {
@@ -73,6 +76,7 @@ export const MeetingRoom = () => {
         {
             id: 4,
             title: 'Илья Голяков',
+            FIO: 'ИГ',
             img: '',
             messages: [
                 {
@@ -128,6 +132,10 @@ export const MeetingRoom = () => {
             text: '',
             author: ''
     })
+    const [currentChat, setCurrentChat] = useState({
+        title: '',
+        id: ''
+    })
         
     const ROBOT_MESSAGE = 'Привет. Сообщение отправлено'
         
@@ -147,14 +155,17 @@ export const MeetingRoom = () => {
                     chatList={chatList}
                     setChatList={setChatList}
                     data={messageBody} 
-                    setData={setMessageBody}/>
+                    setData={setMessageBody}
+                    currentChat={currentChat}
+                    setCurrentChat={setCurrentChat}/>
                 <MessageField 
                     chatList={chatList}/>
             </div>
             <Form 
                 data={messageBody} 
                 setData={setMessageBody}
-                setMessage={setMessageList}
+                chatList={chatList}
+                setChatList={setChatList}
             ></Form>
         </div>
     )
