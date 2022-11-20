@@ -1,20 +1,27 @@
 import './App.css';
 import React from 'react'
-import { MeetingRoom } from './components/meetingRoom'
-import { Page404 } from './components/page404'
-import { Profile } from './components/profile'
 import { 
   BrowserRouter as Router,
   Routes, 
   Route, 
   Link 
 } from 'react-router-dom';
+
+import { MeetingRoom } from './components/meetingRoom'
+import { Page404 } from './components/page404'
+import { Profile } from './components/profile'
+
+import { Provider, useSelector } from 'react-redux'
+import { store } from './redux/store'
+
 import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded } from '@material-ui/icons';
+
 
 export const App = () => {
 
   return (
     <Router>
+      <Provider store={store}>
       <main>
         <Routes>
             <Route 
@@ -60,6 +67,7 @@ export const App = () => {
           </ul>
         </nav>
       </header>
+      </Provider>
     </Router>
   )
 }

@@ -26,7 +26,7 @@ export const SidebarItem = ({chatList, setChatList, currentChat, setCurrentChat}
         if (e.target.className === 'btnDelChat') {
             return
         } else if (e.target.className === 'SidebarItem') {
-            setCurrentChat((prevstate => [title: e.target.attributes['data-title'].value]))
+            setCurrentChat((prevstate => [{title: e.target.attributes['data-title'].value}]))
             // console.log(e.target.attributes['data-title'].value)
         } else {
             setCurrentChat((prevstate => [{title: e.target.parentElement.attributes['data-title'].value}]))
