@@ -4,20 +4,22 @@ import { useSelector } from 'react-redux'
 
 export const MessageArray = ({chatId}) => {
 
-    const message = useSelector(state => state.messages.messageList)
-
-    console.log(message[chatId])
+    let message = useSelector(state => state.messages.messageList[chatId])
+    if (message === undefined) {
+        return message = []
+    }
+    console.log(message === undefined)
 
     return(
         <>
             {
-                // message[chatId].map((el, ind) => {
-                //     return(<Message 
-                //         author={el.name}
-                //         text={el.message}
-                //         timeStamp={el.time}
-                //         key={ind}/>)
-                // })
+                message.map((el, ind) => {
+                    return(<Message 
+                        author={el.name}
+                        text={el.message}
+                        timeStamp={el.time}
+                        key={ind}/>)
+                })
             }
         </>
     )

@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
-import { 
-    BrowserRouter as Router,
-    Routes, 
-    Route, 
-    Link 
-  } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add'
 import { getFIO } from './function/getFIO'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addChat } from '../redux/chats/actions'
 
-export const SidebarItem = ({chatList, setChatList, currentChat, setCurrentChat}) => {
+export const SidebarItem = ({ setChatList }) => {
 
     const chats = useSelector(state => state.chats.chatList)
 
-    console.log(typeof chats, chats)
     //Удаление чата из списка чатов
     const delChat = (e) => {
         const user = e.target.attributes.user.value
@@ -54,8 +48,6 @@ export const SidebarItem = ({chatList, setChatList, currentChat, setCurrentChat}
 }
 
 export const SidebarItemAdd = () => {
-    
-    const chats = useSelector(state => state.chats.chatList)
 
     const dispatch = useDispatch()
 

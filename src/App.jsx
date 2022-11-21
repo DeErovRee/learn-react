@@ -11,7 +11,7 @@ import { MeetingRoom } from './components/meetingRoom'
 import { Page404 } from './components/page404'
 import { Profile } from './components/profile'
 
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
 import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded } from '@material-ui/icons';

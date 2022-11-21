@@ -1,9 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { 
-    BrowserRouter as Router,
+import React from 'react'
+import {
     Routes, 
-    Route, 
-    Link,
+    Route,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
@@ -13,7 +11,6 @@ import { Form } from './form'
 export const MessageField = () => {
 
     const chats = useSelector(state => state.chats.chatList)
-    const message = useSelector(state => state.messages.messageList)
     
     return(
             <div className='messageList'>
