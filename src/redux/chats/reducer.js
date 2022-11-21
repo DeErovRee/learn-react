@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { ADD_CHAT } from './actions'
+import { ADD_CHAT, DEL_CHAT } from './actions'
 
 const initialState = {
     chatList: [],
@@ -17,6 +17,14 @@ export const chatReducer = (state = initialState, action) =>  {
                     },
                 ],
             }
+        case DEL_CHAT: 
+            return {
+                ...state,
+                chatList: [
+                    ...state.chatList.filter(el => el.name !== action.name)
+                ]
+            }
+            
         default: 
             return state;
     }

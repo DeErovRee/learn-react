@@ -10,7 +10,11 @@ import { Form } from './form'
 
 export const MessageField = () => {
 
-    const chats = useSelector(state => state.chats.chatList)
+    let chats = useSelector(state => state.chats.chatList)
+
+    if (chats === undefined) {
+        return chats = []
+    } 
     
     return(
             <div className='messageList'>

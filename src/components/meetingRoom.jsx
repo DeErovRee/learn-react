@@ -86,18 +86,18 @@ export const MeetingRoom = () => {
         },
         ])
     
-        useEffect(() => {
-          const copyChatList = Object.assign([], chatList);
-          for (let item of copyChatList) {
-            const initial = item.title.split(' ');
-            const firstLetterName = initial[0].slice(0, 1);
-            const firstLetterSurname = initial[1].slice(0, 1);
-            copyChatList[copyChatList.indexOf(item)].FIO = firstLetterName + firstLetterSurname
-          };
-          setChatList(() => copyChatList) // измененная копия массива записывается в state chatList
-        }, [])
+        // useEffect(() => {
+        //   const copyChatList = Object.assign([], chatList);
+        //   for (let item of copyChatList) {
+        //     const initial = item.title.split(' ');
+        //     const firstLetterName = initial[0].slice(0, 1);
+        //     const firstLetterSurname = initial[1].slice(0, 1);
+        //     copyChatList[copyChatList.indexOf(item)].FIO = firstLetterName + firstLetterSurname
+        //   };
+        //   setChatList(() => copyChatList) // измененная копия массива записывается в state chatList
+        // }, [])
         
-    const ROBOT_MESSAGE = 'Привет. Сообщение отправлено'
+    // const ROBOT_MESSAGE = 'Привет. Сообщение отправлено'
         
     // useEffect(() => {
     //         if (messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot') {

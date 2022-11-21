@@ -4,20 +4,25 @@ import AddIcon from '@material-ui/icons/Add'
 import { getFIO } from './function/getFIO'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addChat } from '../redux/chats/actions'
+import { addChat, delChat } from '../redux/chats/actions'
 
-export const SidebarItem = ({ setChatList }) => {
+export const SidebarItem = () => {
 
-    const chats = useSelector(state => state.chats.chatList)
+    let chats = useSelector(state => state.chats.chatList)
 
+    if (chats === undefined) {
+        return chats = []
+    }
+
+    const dispatch = useDispatch()
+    
     //Удаление чата из списка чатов
-    const delChat = (e) => {
-        const user = e.target.attributes.user.value
-        setChatList((prevstate) => 
-            prevstate.filter(el => {
-                return el.title !== user
-            })
-        )
+    const onDelChat = (e) => {
+        e.preventDefault()
+        const ind = e.target.attributes.ind.value
+        const name = e.target.attributes.user.value
+        
+        dispatch(delChat(name, ind))
     }
 
     return (
@@ -36,12 +41,11 @@ export const SidebarItem = ({ setChatList }) => {
                     <div className='chatTitle'>{el.name}</div>
                     <button className='btnDelChat' 
                         type='button' 
-                        user={el.name} 
-                        onClick={(e) => {delChat(e)}}>X</button>
+                        user={el.name}
+                        ind={ind} 
+                        onClick={(e) => {onDelChat(e)}}>X</button>
                 </Link>)}
-                <SidebarItemAdd
-                    chats={chats}
-                />
+                <SidebarItemAdd />
             </ul>
         </>
     )

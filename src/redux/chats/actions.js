@@ -6,7 +6,8 @@ export const addChat = (name) => ({
     name,
 })
 
-export const delChat = (name) => ({
+export const delChat = (name, ind) => ({
     type: DEL_CHAT,
     name,
+    ind,
 })
