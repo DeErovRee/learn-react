@@ -10,22 +10,25 @@ import { useSelector } from 'react-redux'
 import { MessageArray } from './messageArray';
 import { Form } from './form'
 
-// const chats = useSelector((state) => state.chats.chatList)
-// const messages = useSelector((state) => state.messages.messageList)
+export const MessageField = () => {
 
-export const MessageField = ({chatList}) => {
+    const chats = useSelector(state => state.chats.chatList)
+    const message = useSelector(state => state.messages.messageList)
+    
     return(
             <div className='messageList'>
                 <Routes className='chatUser'>
                     {
-                        chatList.map((el, ind) => {
+                        chats.map((el, ind) => {
                         return(<Route 
-                            path={`/chat${ind+1}`}
+                            path={`/chat${ind}`}
                             element={
                                 <>
-                                    <h1>Чат c {el.title}</h1>
+                                    <h1>Чат c {el.name}</h1>
                                     <MessageArray 
-                                        array={el.messages}/>
+                                        chatId={chats.indexOf(chats[ind])}/>
+                                    <Form
+                                        chatId={ind}></Form>
                                 </>
                             }
                             key={ind}/>)

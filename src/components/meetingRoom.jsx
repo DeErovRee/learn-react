@@ -161,12 +161,6 @@ export const MeetingRoom = () => {
                 <MessageField 
                     chatList={chatList}/>
             </div>
-            <Form 
-                data={messageBody} 
-                setData={setMessageBody}
-                chatList={chatList}
-                setChatList={setChatList}
-            ></Form>
         </div>
     )
 }

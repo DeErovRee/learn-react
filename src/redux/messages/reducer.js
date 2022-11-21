@@ -16,8 +16,9 @@ export const messagesReducer = (state = initialState, action) => {
                     [action.chatId]: [
                         ...currentList,
                         {
-                            ...action.message,
+                            message: action.message,
                             id: nanoid(),
+                            time: action.timeStamp,
                         }
                     ]
                 }

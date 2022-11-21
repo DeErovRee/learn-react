@@ -164,8 +164,8 @@ header nav ul li a:visited {
     border-right: 0.5px solid gainsboro;
 }
 .inputField .inputText {
-    border-radius: 0px 20px 20px 0px;
-    padding: 5px 15px 5px 5px;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 15px 5px 15px;
     margin: 10px 10px 10px 0px;
 }
 .sendMessageBtn {

@@ -7,9 +7,15 @@ import {
   } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add'
 import { getFIO } from './function/getFIO'
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addChat } from '../redux/chats/actions'
 
 export const SidebarItem = ({chatList, setChatList, currentChat, setCurrentChat}) => {
 
+    const chats = useSelector(state => state.chats.chatList)
+
+    console.log(typeof chats, chats)
     //Удаление чата из списка чатов
     const delChat = (e) => {
         const user = e.target.attributes.user.value
@@ -20,82 +26,55 @@ export const SidebarItem = ({chatList, setChatList, currentChat, setCurrentChat}
         )
     }
 
-    const fn = (e) => {
-        console.log(currentChat)
-
-        if (e.target.className === 'btnDelChat') {
-            return
-        } else if (e.target.className === 'SidebarItem') {
-            setCurrentChat((prevstate => [{title: e.target.attributes['data-title'].value}]))
-            // console.log(e.target.attributes['data-title'].value)
-        } else {
-            setCurrentChat((prevstate => [{title: e.target.parentElement.attributes['data-title'].value}]))
-            // console.log(e.target.parentElement.attributes['data-title'].value)
-        }
-    }
-
     return (
         <>
             <ul>
-                {chatList.map((el, ind) => 
+                {chats.map((el, ind) => 
                 <Link 
-                    to={`/chats/chat${ind+1}`} 
+                    to={`/chats/chat${ind}`} 
                     key={ind}  
                     className='SidebarItem' 
                     data-id={el.id} 
-                    data-title={el.title} 
+                    data-title={el.name} 
                     data-fio={el.FIO}
-                    onClick={(e) => {fn(e)}}
                 >
                     <div className='chatImg'>{el.FIO}</div>
-                    <div className='chatTitle'>{el.title}</div>
+                    <div className='chatTitle'>{el.name}</div>
                     <button className='btnDelChat' 
                         type='button' 
-                        user={el.title} 
+                        user={el.name} 
                         onClick={(e) => {delChat(e)}}>X</button>
                 </Link>)}
-                <SidebarItemAdd 
-                    setChatList={setChatList}
-                    chatList={chatList}
+                <SidebarItemAdd
+                    chats={chats}
                 />
             </ul>
         </>
     )
 }
 
-export const SidebarItemAdd = ({setChatList, chatList}) => {
+export const SidebarItemAdd = () => {
     
-    const [data, setData] = useState({
-        text: ''
-    })
+    const chats = useSelector(state => state.chats.chatList)
 
-    const submitForm = (e) => {
+    const dispatch = useDispatch()
+
+    const onAddChat = (e) => {
         e.preventDefault()
-        let user = e.target[1].value
-        if (user.length > 3) {
-            console.log(user, user.length)
-            const FIO = getFIO(user)
-            const id = chatList.length + 1
-            setChatList((prevstate => [...prevstate, {id: id, title: user, FIO: FIO, img: '', messages: [{author: '', text: '',}]}]))
-        }
-        setData({
-            text: ''
-        })
+        dispatch(addChat(e.target[1].value))
     }
     
     return (
         
         <li>
-            <form className='SidebarItemAdd sidebarItem formListAdd' onSubmit={submitForm}>
+            <form className='SidebarItemAdd sidebarItem formListAdd' onSubmit={(e) => onAddChat(e)}>
                 <button type='submit' className='chatImg chatListAddBtn'>
                     <AddIcon />
                 </button>
                 <input 
                     type='text' 
                     placeholder='Введите пользователя' 
-                    className='chatListAddInput' 
-                    value={data.text}
-                    onChange={(e) => setData((prevstate) => [{...prevstate, text: e.target.value}])}/>
+                    className='chatListAddInput'/>
             </form>
         </li>
     )

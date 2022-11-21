@@ -1,18 +1,23 @@
 import React from "react";
 import { Message } from "./message";
-import { getCurrentDate } from "./function/currentDate";
+import { useSelector } from 'react-redux'
 
-export const MessageArray = ({array}) => {
+export const MessageArray = ({chatId}) => {
+
+    const message = useSelector(state => state.messages.messageList)
+
+    console.log(message[chatId])
+
     return(
         <>
             {
-                array.map((el, ind) => {
-                    return(<Message 
-                        author={el.author}
-                        text={el.text}
-                        timeStamp={getCurrentDate()}
-                        key={ind+1}/>)
-                })
+                // message[chatId].map((el, ind) => {
+                //     return(<Message 
+                //         author={el.name}
+                //         text={el.message}
+                //         timeStamp={el.time}
+                //         key={ind}/>)
+                // })
             }
         </>
     )
