@@ -1,14 +1,7 @@
-import React, { useState } from 'react'
-import { toggleProfilePrivacy } from '../redux/reducer'
-import { Toggler } from '../redux/toggler'
+import React from 'react'
+import { Toggler } from '../redux/profile/toggler'
 
 export const Profile = () => {
-
-    const [profilePrivacy, setProfilePrivacy] = useState(false)
-
-    const defaultAction = {
-        type: 'SWITCH_TOGGLE'
-    }
 
     return (
         <div className="profile">
