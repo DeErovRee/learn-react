@@ -8,7 +8,6 @@ export const MessageArray = ({chatId}) => {
     if (message === undefined) {
         return message = []
     }
-    console.log(message === undefined)
 
     return(
         <>
