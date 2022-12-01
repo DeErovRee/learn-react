@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add'
 import { useDispatch, useSelector } from 'react-redux'
@@ -54,6 +54,12 @@ export const SidebarItemAdd = () => {
 
     const dispatch = useDispatch()
 
+    const [text, setText] = useState('')
+
+    const changeText = (event) => {
+        setText(event.target.value)
+    }
+
     const onAddChat = (e) => {
         e.preventDefault()
         let name = e.target[1].value
@@ -61,6 +67,7 @@ export const SidebarItemAdd = () => {
             name = 'Новый пользователь'
         }
         dispatch(addChat(name))
+        setText('')
     }
     
     return (
@@ -73,7 +80,9 @@ export const SidebarItemAdd = () => {
                 <input 
                     type='text' 
                     placeholder='Введите пользователя' 
-                    className='chatListAddInput'/>
+                    className='chatListAddInput'
+                    value={text}
+                    onChange={changeText}/>
             </form>
         </li>
     )

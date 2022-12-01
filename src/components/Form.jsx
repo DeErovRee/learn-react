@@ -8,7 +8,14 @@ import { addMessage } from '../redux/messages/actions'
 
 export const Form = ({chatId}) => {
 
+    const [text, setText] = useState('')
+
     const dispatch = useDispatch()
+
+    function changeText(event) {
+        setText(event.target.value)
+        console.log(text)
+    }
 
     const onAddMessage = (chatId, message, e, author = 'User') => {
         e.preventDefault()
@@ -22,6 +29,7 @@ export const Form = ({chatId}) => {
                     dispatch(addMessage(chatId, message, timeStamp, author))
                 }, 2000)
             }
+            setText('')
         }
     }
 
@@ -34,7 +42,7 @@ export const Form = ({chatId}) => {
     return (
         <form onSubmit={(e) => onAddMessage(chatId, e.target[0].value, e)} className='formSubmit'>
             <div className="inputField">
-                <input ref={ref} className="inputText" placeholder="Текст"/>
+                <input ref={ref} className="inputText" placeholder="Текст" value={text} onChange={changeText}/>
             </div>
             <button type="submit" className='sendMessageBtn'>
                 <SendIcon />
