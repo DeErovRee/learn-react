@@ -14,7 +14,12 @@ import { Profile } from './components/profile'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+
 import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded } from '@material-ui/icons';
+
+let persistor = persistStore(store)
 
 
 export const App = () => {
@@ -22,61 +27,57 @@ export const App = () => {
   return (
     <Router>
       <Provider store={store}>
-      <main>
-        <Routes>
-            <Route 
-              path='/chats/*'
-              element={
-                <MeetingRoom />
-              } />
-            <Route 
-              path='/profile'
-              element={
-                <Profile />
-              } />
-            <Route 
-              path='/'
-              element={
-                <Home />
-              } />
-            <Route 
-              path='*'
-              element={
-                <Page404 />
-              } />
-        </Routes>
-      </main>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>
-                <HomeIcon />
-              </Link>
-            </li>
-            <li>
-              <Link to='chats'>
-                <QuestionAnswerRounded />
-              </Link>
-            </li>
-            <li>
-              <Link to='profile'>
-                <PersonRounded />
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        <PersistGate loading={null} persistor={persistor}>
+          <main>
+            <Routes>
+                <Route 
+                  path='/chats/*'
+                  element={
+                    <MeetingRoom />
+                  } />
+                <Route 
+                  path='/profile'
+                  element={
+                    <Profile />
+                  } />
+                <Route 
+                  path='/'
+                  element={
+                    <Home />
+                  } />
+                <Route 
+                  path='*'
+                  element={
+                    <Page404 />
+                  } />
+            </Routes>
+          </main>
+          <header>
+            <nav>
+              <ul>
+                <li>
+                  <Link to='/'>
+                    <HomeIcon />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='chats'>
+                    <QuestionAnswerRounded />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='profile'>
+                    <PersonRounded />
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+        </PersistGate>
       </Provider>
     </Router>
   )
 }
-
-// const Profile = () => {
-//   return(
-//     <h1>Здесь будет страница вашего профиля</h1>
-//   )
-// }
 
 const Home = () => {
   return(
