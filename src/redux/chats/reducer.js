@@ -1,5 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { ADD_CHAT, DEL_CHAT } from './actions'
+import { getFIO } from '../../components/function/getFIO'
 
 const initialState = {
     chatList: [],
@@ -13,7 +14,8 @@ export const chatReducer = (state = initialState, action) =>  {
                 chatList: [
                     ...state.chatList, {
                         id: nanoid(),
-                        name: action.name
+                        name: action.name,
+                        FIO: getFIO(action.name)
                     },
                 ],
             }

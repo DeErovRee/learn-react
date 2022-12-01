@@ -4,5 +4,6 @@ export const getFIO = (user) => {
     for (let i = 0; i < userArr.length; i++) {
         FIO += userArr[i].slice(0, 1);
     }
-    return FIO;
+    
+    return FIO.toUpperCase();
 }

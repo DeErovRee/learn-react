@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import SendIcon from '@material-ui/icons/Send'
@@ -10,14 +10,19 @@ export const Form = ({chatId}) => {
 
     const dispatch = useDispatch()
 
-    const onAddMessage = (chatId, message, e) => {
+    const onAddMessage = (chatId, message, e, author = 'User') => {
         e.preventDefault()
         if (message.length > 0) {
             const timeStamp = getCurrentDate()
-            dispatch(addMessage(chatId, message, timeStamp))
-
+            dispatch(addMessage(chatId, message, timeStamp, author))
+            if (author !== 'Robot') {
+                author = 'Robot'
+                message = 'Ваше ообщение отправлено'
+                setTimeout(() => {
+                    dispatch(addMessage(chatId, message, timeStamp, author))
+                }, 2000)
+            }
         }
-        
     }
 
     const ref = useRef (null)
@@ -29,7 +34,7 @@ export const Form = ({chatId}) => {
     return (
         <form onSubmit={(e) => onAddMessage(chatId, e.target[0].value, e)} className='formSubmit'>
             <div className="inputField">
-                <input ref={ref} className="inputText" placeholder="Текст" />
+                <input ref={ref} className="inputText" placeholder="Текст"/>
             </div>
             <button type="submit" className='sendMessageBtn'>
                 <SendIcon />

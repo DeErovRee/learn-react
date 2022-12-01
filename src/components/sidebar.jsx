@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add'
-import { getFIO } from './function/getFIO'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 
 import { addChat, delChat } from '../redux/chats/actions'
 
@@ -57,7 +56,11 @@ export const SidebarItemAdd = () => {
 
     const onAddChat = (e) => {
         e.preventDefault()
-        dispatch(addChat(e.target[1].value))
+        let name = e.target[1].value
+        if (name === '') {
+            name = 'Новый пользователь'
+        }
+        dispatch(addChat(name))
     }
     
     return (

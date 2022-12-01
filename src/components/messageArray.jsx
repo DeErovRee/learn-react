@@ -14,7 +14,7 @@ export const MessageArray = ({chatId}) => {
             {
                 message.map((el, ind) => {
                     return(<Message 
-                        author={el.name}
+                        author={el.author}
                         text={el.message}
                         timeStamp={el.time}
                         key={ind}/>)
