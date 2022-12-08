@@ -21,7 +21,7 @@ header nav ul li a:visited {
     color: black;
 }
 .App {
-    min-height: 100vh;
+    min-height: 92.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,9 +34,13 @@ header nav ul li a:visited {
     flex-grow: 1;
 }
 .sidebar {
+    z-index: 99;
     position: sticky;
     top: 0;
     background-color: ghostwhite;
+}
+
+.sidebar:hover {
 }
 .sidebar ul {
     list-style: none;
@@ -105,9 +109,12 @@ header nav ul li a:visited {
     cursor: pointer;
 }
 .messageList {
+    min-height: 92.5vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    justify-content: space-between;
 }
 .message {
     max-width: 70vh;
@@ -132,22 +139,19 @@ header nav ul li a:visited {
     margin: 5px 5px;
 }
 .formSubmit {
-    display: flex;
     position: sticky;
     bottom: 50px;
-    width: 100%;
+    width: 150%;
     background-color: gainsboro;
     display: flex;
     flex-shrink: 1;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     align-content: center;
 }
 .inputField {
-    display: flex;
-    flex-direction: row;
-    width: 300px;
+    
 }
 .inputField input {
     height: 20px;
@@ -164,6 +168,7 @@ header nav ul li a:visited {
     border-right: 0.5px solid gainsboro;
 }
 .inputField .inputText {
+    width: 300px;
     border-radius: 20px 20px 20px 20px;
     padding: 5px 15px 5px 15px;
     margin: 10px 10px 10px 0px;
@@ -196,4 +201,16 @@ header nav ul li a:visited {
 }
 .settings {
     display: flex;
+}
+.quoteBlock {
+    margin: 0 auto;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+.quote {
+    text-align: justify;
+    padding: 15px;
 }

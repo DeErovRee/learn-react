@@ -10,6 +10,7 @@ import {
 import { MeetingRoom } from './components/meetingRoom'
 import { Page404 } from './components/page404'
 import { Profile } from './components/profile'
+import { ApiTronaldDump } from './components/apiTronaldDump';
 
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
@@ -17,7 +18,7 @@ import { store } from './redux/store'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded } from '@material-ui/icons';
+import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded, Accessible } from '@material-ui/icons';
 
 let persistor = persistStore(store)
 
@@ -43,7 +44,7 @@ export const App = () => {
                 <Route 
                   path='/'
                   element={
-                    <Home />
+                    <ApiTronaldDump />
                   } />
                 <Route 
                   path='*'
@@ -57,7 +58,7 @@ export const App = () => {
               <ul>
                 <li>
                   <Link to='/'>
-                    <HomeIcon />
+                    <Accessible />
                   </Link>
                 </li>
                 <li>
@@ -79,10 +80,10 @@ export const App = () => {
   )
 }
 
-const Home = () => {
-  return(
-    <h1>Здесь будет главная страница</h1>
-  )
-}
+// const Home = () => {
+//   return(
+//     <h1>Здесь будет главная страница</h1>
+//   )
+// }
 
 export default App;
