@@ -1,10 +1,11 @@
-export const Message = ({author, text}) => {
+import React from 'react'
+
+export const Message = ({author, text, timeStamp}) => {
     return (
-        <div>
-            <hr />
-            <h1>{author}</h1>
-            <p>{text}</p>
-            <hr />
+        <div className="message">
+            <h3>{author}</h3>
+            <p className='text'>{text}</p>
+            <p className='timeStamp'>{timeStamp}</p>
         </div>
     )
 }

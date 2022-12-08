@@ -1,28 +1,52 @@
-export const Form = ({data, setData, setMessage}) => {
-    const {text, author} = data
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-    const submitForm = (e) => {
+import SendIcon from '@material-ui/icons/Send'
+
+import { getCurrentDate } from './function/currentDate'
+import { addMessage } from '../redux/messages/actions'
+
+export const Form = ({chatId}) => {
+
+    const [text, setText] = useState('')
+
+    const dispatch = useDispatch()
+
+    function changeText(event) {
+        setText(event.target.value)
         console.log(text)
-        e.preventDefault()
-        if(text.length > 0) {
-            setMessage(prevstate => [...prevstate, {text, author}])
-        }
-        setData(
-            {
-                text: '',
-                author: '',
-            }
-        )
     }
+
+    const onAddMessage = (chatId, message, e, author = 'User') => {
+        e.preventDefault()
+        if (message.length > 0) {
+            const timeStamp = getCurrentDate()
+            dispatch(addMessage(chatId, message, timeStamp, author))
+            if (author !== 'Robot') {
+                author = 'Robot'
+                message = 'Ваше ообщение отправлено'
+                setTimeout(() => {
+                    dispatch(addMessage(chatId, message, timeStamp, author))
+                }, 2000)
+            }
+            setText('')
+        }
+    }
+
+    const ref = useRef (null)
+
+    useEffect( () => {
+        ref.current.focus()
+    }, [])
+
     return (
-        <form onSubmit={submitForm}>
-            <input placeholder="Имя" value={text} onChange={(e) => 
-                setData(prevstate => [{...prevstate, text: e.target.value}])} 
-            />
-            <input placeholder="Текст" value={author} onChange={(e) => 
-                setData(prevstate => [{...prevstate, author: e.target.value}])} 
-            />
-            <button type="submit">Отправить</button>
+        <form onSubmit={(e) => onAddMessage(chatId, e.target[0].value, e)} className='formSubmit'>
+            <div className="inputField">
+                <input ref={ref} className="inputText" placeholder="Текст" value={text} onChange={changeText}/>
+            </div>
+            <button type="submit" className='sendMessageBtn'>
+                <SendIcon />
+            </button>
         </form>
     )
 }

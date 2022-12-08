@@ -1,0 +1,199 @@
+body {
+    margin: 0 auto;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(./image/bg-image.jpg);
+    background-attachment: fixed;
+}
+header {
+    padding: 10px 0px;
+    background-color: gainsboro;
+    position: sticky;
+    bottom: 0;
+}
+header nav ul {
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+header nav ul li a:visited {
+    text-decoration: none;
+    color: black;
+}
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.workSpace {
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+}
+.sidebar {
+    position: sticky;
+    top: 0;
+    background-color: ghostwhite;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.SidebarItem {
+    position: relative;
+    display: flex;
+    margin: 0;
+    border-bottom: 0.5px solid gainsboro;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: black;
+}
+.btnDelChat {
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: none;
+    background: none;
+    color: gainsboro;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.chatImg {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    line-height: 1.2em;
+}
+.chatTitle {
+    margin: 10px 20px 10px 10px;
+}
+.formListAdd {
+    display: flex;
+}
+.chatListAddBtn {
+    background-color: gainsboro;
+    padding: 0;
+}
+.chatListAddInput {
+    margin: 10px 20px 10px 10px;
+    border: none;
+    background-color: inherit;
+    border-bottom: 1px solid gainsboro;
+}
+.chatListAddInput:focus-visible {
+    outline: none;
+}
+.sidebar ul li:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.messageList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.message {
+    max-width: 70vh;
+    text-align: center;
+    background-color: aliceblue;
+    border: 0.5px solid gainsboro;
+    border-radius: 20px 20px 20px 0px;
+    margin: 10px;
+}
+.message h3 {
+    text-align: left;
+    margin: 5px 10px;
+}
+.message .text {
+    word-break: break-all;
+    text-align: justify;
+    margin: 10px 10px;
+}
+.timeStamp {
+    color: gainsboro;
+    text-align: right;
+    margin: 5px 5px;
+}
+.formSubmit {
+    display: flex;
+    position: sticky;
+    bottom: 50px;
+    width: 100%;
+    background-color: gainsboro;
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.inputField {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+}
+.inputField input {
+    height: 20px;
+    border: none;
+}
+.inputField input:focus-visible {
+    outline: none;
+}
+.inputField .inputName {
+    min-width: 50px;
+    border-radius: 20px 0px 0px 20px;
+    padding: 5px 5px 5px 15px;
+    margin: 10px 0px 10px 15px;
+    border-right: 0.5px solid gainsboro;
+}
+.inputField .inputText {
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 15px 5px 15px;
+    margin: 10px 10px 10px 0px;
+}
+.sendMessageBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 32px;
+    background-image: url(./image/sendMessage.png);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    color: white;
+    background-color: dodgerblue;
+}
+.profile {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+}
+.profileImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    background-color: red;
+}
+.settings {
+    display: flex;
+}
