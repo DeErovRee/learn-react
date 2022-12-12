@@ -11,13 +11,26 @@ export const ApiTronaldDump = () => {
         reload()
     },[])
 
-    const reload = () => {
-        setLoading(true)
-        setTimeout(() => {fetch(`${API}/random/quote`)
-        .then((response) => response.json())
-        .then((data) => setData(data.value))
-        .catch((err) => setError(err.message))
-        .finally(() => setLoading(false))},1500)
+    const reload = async () => {
+        setLoading(true);
+        setError('');
+        setData('');
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        try {
+            const res = await fetch(`${API}/random/quote`);
+            const data = await res.json();
+            setData(data.value);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('error');
+            }
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
