@@ -1,16 +1,22 @@
 import './App.css';
-import React from 'react'
+import React, { useState } from 'react'
 import { 
   BrowserRouter as Router,
   Routes, 
-  Route, 
+  Route,
   Link 
 } from 'react-router-dom';
 
 import { MeetingRoom } from './components/meetingRoom'
 import { Page404 } from './components/page404'
 import { Profile } from './components/profile'
-import { ApiTronaldDump } from './components/apiTronaldDump';
+import { ApiTronaldDump } from './components/apiTronaldDump'
+import { Home } from './components/home'
+import { Signup } from './components/signup'
+import { Login } from './components/login'
+
+import { PrivateRoute } from './hocs/PrivateRoute';
+import { PublicRoute } from './hocs/PublicRoute'
 
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
@@ -18,12 +24,27 @@ import { store } from './redux/store'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded, Accessible } from '@material-ui/icons';
+import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded, Accessible } from '@material-ui/icons'
+import { useEffect } from 'react';
+
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase/firebase'
 
 let persistor = persistStore(store)
 
 
 export const App = () => {
+  const [authed, setAuthed] = useState(false)
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthed(true)
+      } else {
+        setAuthed(false)
+      }
+    })
+  }, [])
 
   return (
     <Router>
@@ -31,25 +52,47 @@ export const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <main>
             <Routes>
-                <Route 
+                <PublicRoute
+                  authenticated={authed}
+                  exact path='/login'
+                  element={
+                    <Login />
+                  } />
+                <PublicRoute
+                  authenticated={authed}
+                  exact path='/signup'
+                  element={
+                    <Signup />
+                  } />
+                <PublicRoute 
+                  authenticated={authed}
+                  exact path='/'
+                  element={
+                    <Home />
+                  } />
+                <PrivateRoute
+                  authenticated={authed}
                   path='/chats/*'
                   element={
                     <MeetingRoom />
                   } />
-                <Route 
+                <PrivateRoute
+                  authenticated={authed}
                   path='/profile'
                   element={
                     <Profile />
                   } />
-                <Route 
-                  path='/'
-                  element={
-                    <ApiTronaldDump />
-                  } />
-                <Route 
+                <PublicRoute
+                  authenticated={authed}
                   path='*'
                   element={
                     <Page404 />
+                  } />
+                <PublicRoute
+                  authenticated={authed}
+                  path='/api'
+                  element={
+                    <ApiTronaldDump />
                   } />
             </Routes>
           </main>
@@ -58,7 +101,7 @@ export const App = () => {
               <ul>
                 <li>
                   <Link to='/'>
-                    <Accessible />
+                    <HomeIcon />
                   </Link>
                 </li>
                 <li>
@@ -69,6 +112,21 @@ export const App = () => {
                 <li>
                   <Link to='profile'>
                     <PersonRounded />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='login'>
+                    <HomeIcon />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='signup'>
+                    <HomeIcon />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='api'>
+                    <Accessible />
                   </Link>
                 </li>
               </ul>
