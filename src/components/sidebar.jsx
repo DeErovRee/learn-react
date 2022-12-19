@@ -27,6 +27,7 @@ export const SidebarItem = () => {
     return (
         <>
             <ul>
+                <SidebarItemAdd />
                 {chats.map((el, ind) => 
                 <Link 
                     to={`/chats/chat${ind}`} 
@@ -44,7 +45,6 @@ export const SidebarItem = () => {
                         ind={ind} 
                         onClick={(e) => {onDelChat(e)}}>X</button>
                 </Link>)}
-                <SidebarItemAdd />
             </ul>
         </>
     )
