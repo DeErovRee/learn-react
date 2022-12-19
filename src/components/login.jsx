@@ -29,8 +29,8 @@ export const Login = () => {
 
     return (
         <div>
-            <form onsubmit={handleSubmit}>
-                <p>Fill in the form below to register new account</p>
+            <form onSubmit={handleSubmit}>
+                <p>Fill in the form below to login to your account</p>
                 <div>
                     <input 
                         type="email" 
@@ -54,7 +54,7 @@ export const Login = () => {
                     <button type='submit'>Login</button>
                     <hr />
                     <p>
-                        Already have an account? <Link to='/login'> Sign in</Link>
+                        Don't have an account? <Link to='/signup'> Sign up</Link>
                     </p>
                 </div>
             </form>

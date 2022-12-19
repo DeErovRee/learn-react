@@ -29,7 +29,7 @@ export const Signup = () => {
 
     return (
         <div>
-            <form onsubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <p>Fill in the form below to register new account</p>
                 <div>
                     <input 
@@ -51,7 +51,7 @@ export const Signup = () => {
                 </div>
                 <div>
                     {error && <p>{error}</p>}
-                    <button type='submit'>Login</button>
+                    <button type='submit'>Sign up</button>
                     <hr />
                     <p>
                         Already have an account? <Link to='/login'> Sign in</Link>

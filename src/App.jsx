@@ -24,7 +24,7 @@ import { store } from './redux/store'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded, Accessible } from '@material-ui/icons'
+import { Home as HomeIcon, PersonRounded, QuestionAnswerRounded, Accessible, Public } from '@material-ui/icons'
 import { useEffect } from 'react';
 
 import { onAuthStateChanged } from 'firebase/auth';
@@ -52,47 +52,65 @@ export const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <main>
             <Routes>
-                <PublicRoute
+                <Route
                   authenticated={authed}
                   exact path='/login'
                   element={
-                    <Login />
+                    <PublicRoute
+                      authenticated={authed}>
+                        <Login />
+                    </PublicRoute>
                   } />
-                <PublicRoute
+                <Route
                   authenticated={authed}
                   exact path='/signup'
                   element={
-                    <Signup />
+                    <PublicRoute
+                      authenticated={authed}>
+                        <Signup />
+                    </PublicRoute>
                   } />
-                <PublicRoute 
+                <Route 
                   authenticated={authed}
                   exact path='/'
                   element={
-                    <Home />
-                  } />
-                <PrivateRoute
+                    <PublicRoute
+                      authenticated={authed}>
+                        <Home />
+                    </PublicRoute>
+                  } />*
+                <Route
                   authenticated={authed}
                   path='/chats/*'
                   element={
-                    <MeetingRoom />
+                    <PrivateRoute
+                      authenticated={authed}>
+                        <MeetingRoom />
+                    </PrivateRoute>
                   } />
-                <PrivateRoute
+                <Route
                   authenticated={authed}
                   path='/profile'
                   element={
-                    <Profile />
+                    <PrivateRoute
+                      authenticated={authed}>
+                        <Profile />
+                    </PrivateRoute>
                   } />
-                <PublicRoute
+                <Route
                   authenticated={authed}
                   path='*'
                   element={
                     <Page404 />
                   } />
-                <PublicRoute
+                <Route
                   authenticated={authed}
                   path='/api'
                   element={
-                    <ApiTronaldDump />
+                    <PrivateRoute
+                      authenticated={authed}>
+                        <ApiTronaldDump />
+                    </PrivateRoute>
                   } />
             </Routes>
           </main>

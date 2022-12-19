@@ -3,7 +3,7 @@ import { Route, Navigate } from "react-router-dom";
 
 export const PrivateRoute = ({ authenticated, ...rest }) => {
     return authenticated ? (
-        <Route {...rest} />
+        <React.Fragment {...rest} />
     ) : (
         <Navigate to={{ pathname: "/login"}} />
     );
