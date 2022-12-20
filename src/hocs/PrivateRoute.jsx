@@ -5,6 +5,6 @@ export const PrivateRoute = ({ authenticated, ...rest }) => {
     return authenticated ? (
         <React.Fragment {...rest} />
     ) : (
-        <Navigate to={{ pathname: "/login"}} />
+        <Navigate to={{ pathname: "/"}} />
     );
 }

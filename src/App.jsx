@@ -36,7 +36,7 @@ let persistor = persistStore(store)
 export const App = () => {
   const [authed, setAuthed] = useState(false)
 
-  useEffect(() => {
+  const AuthedCheck = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthed(true)
@@ -44,21 +44,60 @@ export const App = () => {
         setAuthed(false)
       }
     })
+  }
+
+  const Component = () => {
+    const logout = async () => {
+      try {
+          await auth.signOut()
+      } catch(error) {
+          console.log(error)
+      }
+    }
+
+    return(
+      authed ? <button onClick={logout}>Logout</button> : <li><Link to='/chats'></Link>Login</li>
+    )
+  }
+
+  useEffect(() => {
+    AuthedCheck()
   }, [])
 
   return (
     <Router>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <header>
+            <nav>
+              <ul>
+                <li>
+                  <Link to='chats'>
+                    <QuestionAnswerRounded />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='profile'>
+                    <PersonRounded />
+                  </Link>
+                </li>
+                <li>
+                  <Link to='api'>
+                    <Accessible />
+                  </Link>
+                </li>
+                <Component />
+              </ul>
+            </nav>
+          </header>
           <main>
             <Routes>
                 <Route
                   authenticated={authed}
                   exact path='/login'
                   element={
-                    <PublicRoute
-                      authenticated={authed}>
-                        <Login />
+                    <PublicRoute>
+                      <Login />
                     </PublicRoute>
                   } />
                 <Route
@@ -78,7 +117,7 @@ export const App = () => {
                       authenticated={authed}>
                         <Home />
                     </PublicRoute>
-                  } />*
+                  } />
                 <Route
                   authenticated={authed}
                   path='/chats/*'
@@ -114,42 +153,6 @@ export const App = () => {
                   } />
             </Routes>
           </main>
-          <header>
-            <nav>
-              <ul>
-                <li>
-                  <Link to='/'>
-                    <HomeIcon />
-                  </Link>
-                </li>
-                <li>
-                  <Link to='chats'>
-                    <QuestionAnswerRounded />
-                  </Link>
-                </li>
-                <li>
-                  <Link to='profile'>
-                    <PersonRounded />
-                  </Link>
-                </li>
-                <li>
-                  <Link to='login'>
-                    <HomeIcon />
-                  </Link>
-                </li>
-                <li>
-                  <Link to='signup'>
-                    <HomeIcon />
-                  </Link>
-                </li>
-                <li>
-                  <Link to='api'>
-                    <Accessible />
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </header>
         </PersistGate>
       </Provider>
     </Router>
