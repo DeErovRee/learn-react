@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 export const Toggler = () => {
     const isChecked = useSelector(state => state.profile.profileClose)
     const dispatch = useDispatch()
-    console.log(isChecked)
-
     return(
         <>
             <input type='checkbox' value={isChecked} onChange={() => {
