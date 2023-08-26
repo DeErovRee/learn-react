@@ -2,10 +2,10 @@ import React from 'react'
 import {
     Routes, 
     Route,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { MessageArray } from './messageArray';
+import { MessageArray } from './messageArray'
 import { Form } from './form'
 
 export const MessageField = () => {
